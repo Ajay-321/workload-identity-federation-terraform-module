@@ -63,7 +63,7 @@ jobs:
         run: |
             gcloud iam workload-identity-pools create-cred-config \
             projects/${{ secrets.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ secrets.AWS_POOL_NAME }}/providers/${{ secrets.AWS_PROVIDER_NAME }} \
-            --service-account=${{ secrets.SERVICE_ACCOUNT_NAME }}@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com \
+            --service-account=${{ secrets.AWS_SERVICE_ACCOUNT_NAME }}@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com \
             --aws \
             --output-file=clientLibraryConfig-aws-provider.json
 
