@@ -45,13 +45,17 @@ jobs:
         with:
           terraform_version: 1.12  
 
-      # Terraform Init
+      # Terraform Format
       - name: Terraform Format
         run: terraform fmt -recursive -check -diff -write=false .
 
       # Terraform Init
       - name: Terraform Init
         run: cd dev/us-central1 && terraform init
+     
+      # Terraform Plan
+      - name: Terraform Plan
+        run: cd dev/us-central1 && terraform plan -input=false   
 
       # Terraform Apply
       - name: Terraform Apply
