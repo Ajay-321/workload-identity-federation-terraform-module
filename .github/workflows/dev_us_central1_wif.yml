@@ -62,7 +62,7 @@ jobs:
       - name: Create WIF Cred Config
         run: |
             gcloud iam workload-identity-pools create-cred-config \
-            projects/${{ secrets.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ secrets.POOL_NAME }}/providers/${{ secrets.PROVIDER_NAME }} \
+            projects/${{ secrets.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ secrets.AWS_POOL_NAME }}/providers/${{ secrets.AWS_PROVIDER_NAME }} \
             --service-account=${{ secrets.SERVICE_ACCOUNT_NAME }}@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com \
             --aws \
             --output-file=clientLibraryConfig-aws-provider.json
