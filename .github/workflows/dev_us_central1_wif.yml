@@ -1,0 +1,59 @@
+name: dev_us_central1_wif
+
+on:
+  workflow_dispatch:
+    inputs:
+      tf_apply:
+        description: run terraform apply
+        default: 'false'
+  push:
+    paths:
+      - '.github/workflows/dev_us_central1_wif.yml'
+      - 'dev/us-central1/**'
+      - 'modules/**'
+
+permissions:
+  id-token: write   # Required for WIF
+  contents: read    # Required for actions/checkout
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Authenticate to GCP using WIF
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/${{ secrets.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ secrets.POOL_NAME }}/providers/${{ secrets.PROVIDER_NAME }}"
+          service_account: "${{ secrets.SERVICE_ACCOUNT_NAME }}@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com"
+
+      # Setup gcloud CLI (optional but useful for debugging)
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - run: gcloud auth list
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.12  
+
+      - name: Terraform Format
+        run: terraform fmt -recursive -check -diff -write=false .
+
+      - name: Terraform Init
+        run: |
+          cd dev/us-central1 && terraform init
+
+      - name: Terraform Plan
+        run: cd dev/us-central1 && terraform plan -input=false 
+
+      - name: Terraform Apply
+        if: ((github.ref == 'refs/heads/main' && github.event_name == 'push')||(github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && github.event.inputs.tf_apply == 'true'))
+        run: cd dev/us-central1 && terraform apply -auto-approve -input=false
