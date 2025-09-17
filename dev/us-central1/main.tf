@@ -23,7 +23,8 @@ module "storage_pubsub" {
 module "workload_identity" {
   source = "../../modules/workload-identity"
 
-  project_id = var.project_id
+  project_id     = var.project_id
+  project_number = var.project_number
 
   # Pool Configuration
   pool_id                        = var.pool_id
