@@ -9,6 +9,11 @@ variable "pool_id" {
   type        = string
 }
 
+variable "project_number" {
+  description = "gcp project number"
+  type        = any
+}
+
 variable "wif_pool_display_name" {
   description = "Workload Identity Pool display name"
   type        = string

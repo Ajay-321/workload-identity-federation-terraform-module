@@ -5,6 +5,11 @@ variable "project_id" {
   type        = string
 }
 
+variable "project_number" {
+  description = "gcp project number"
+  type        = any
+}
+
 variable "region" {
   description = "The GCP region"
   type        = string
@@ -69,10 +74,6 @@ variable "wif_service_account_name" {
 }
 
 variable "dlq_subscription_name" {
-  type = any
-}
-
-variable "project_number" {
   type = any
 }
 
