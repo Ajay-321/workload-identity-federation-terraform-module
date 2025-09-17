@@ -70,18 +70,4 @@ resource "google_project_iam_member" "service_account_roles" {
   member  = "serviceAccount:${google_service_account.wif_service_account.email}"
 }
 
-resource "null_resource" "aws_wif_cred_config" {
-  provisioner "local-exec" {
-    command = <<EOT
-      gcloud iam workload-identity-pools create-cred-config \
-        projects/${var.project_number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.aws_pool.workload_identity_pool_id}/providers/${google_iam_workload_identity_pool_provider.aws_provider.workload_identity_pool_provider_id} \
-        --service-account=${google_service_account.wif_service_account.email} \
-        --aws \
-        --output-file=clientLibraryConfig-aws-provider.json
-
-      gsutil cp clientLibraryConfig-aws-provider.json gs://${var.gcs_bucket}/wif-configs/
-    EOT
-  }
-}
-
 

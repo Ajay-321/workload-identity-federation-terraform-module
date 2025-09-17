@@ -26,4 +26,3 @@ aws_role_name  = ["dev-lambda-function-role"]
 # Workload Identity Service Account
 service_account_id       = "dev-wif-demo-sa"
 wif_service_account_name = "dev-wif-demo-sa"
-gcs_bucket               = "dev-wif-demo-bucket"

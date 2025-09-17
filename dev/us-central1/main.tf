@@ -23,8 +23,7 @@ module "storage_pubsub" {
 module "workload_identity" {
   source = "../../modules/workload-identity"
 
-  project_id     = var.project_id
-  project_number = var.project_number
+  project_id = var.project_id
 
   # Pool Configuration
   pool_id                        = var.pool_id
@@ -35,7 +34,6 @@ module "workload_identity" {
   # AWS Configuration
   aws_account_id = var.aws_account_id
   aws_role_name  = var.aws_role_name
-  gcs_bucket     = var.gcs_bucket
 
   # Service Account
   service_account_id       = var.service_account_id

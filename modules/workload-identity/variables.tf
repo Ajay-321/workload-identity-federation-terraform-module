@@ -9,11 +9,6 @@ variable "pool_id" {
   type        = string
 }
 
-variable "project_number" {
-  description = "gcp project number"
-  type        = any
-}
-
 variable "wif_pool_display_name" {
   description = "Workload Identity Pool display name"
   type        = string
@@ -47,8 +42,4 @@ variable "service_account_id" {
 variable "wif_service_account_name" {
   description = "Service account name for Workload Identity"
   type        = string
-}
-
-variable "gcs_bucket" {
-  type = string
 }
