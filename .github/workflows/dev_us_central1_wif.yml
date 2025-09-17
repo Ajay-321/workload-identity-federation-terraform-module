@@ -62,7 +62,8 @@ jobs:
       - name: Export AWS WIF Cred Config
         run: |
           cd dev/us-central1
-          terraform output -raw aws_wif_cred_config > clientLibraryConfig-aws-provider.json
+          terraform output -raw aws_wif_cred_config_file > file_path.txt
+          cat $(cat file_path.txt) > clientLibraryConfig-aws-provider.json
 
       # Upload file to GCS bucket
       - name: Upload AWS WIF Cred Config to GCS
