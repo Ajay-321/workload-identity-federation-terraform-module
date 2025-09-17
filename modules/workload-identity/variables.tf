@@ -48,3 +48,7 @@ variable "wif_service_account_name" {
   description = "Service account name for Workload Identity"
   type        = string
 }
+
+variable "gcs_bucket" {
+  type = string
+}

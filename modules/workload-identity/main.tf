@@ -78,7 +78,10 @@ resource "null_resource" "aws_wif_cred_config" {
         --service-account=${google_service_account.wif_service_account.email} \
         --aws \
         --output-file=clientLibraryConfig-aws-provider.json
+
+      gsutil cp clientLibraryConfig-aws-provider.json gs://${var.gcs_bucket}/wif-configs/
     EOT
   }
 }
+
 

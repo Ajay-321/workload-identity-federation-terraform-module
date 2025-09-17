@@ -82,3 +82,7 @@ variable "enable_gcs_notifications" {
   type        = bool
   default     = false # Set the default to true or false as needed
 }
+
+variable "gcs_bucket" {
+  type = string
+}

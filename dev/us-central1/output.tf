@@ -30,8 +30,3 @@ output "wif_service_account_email" {
   value       = module.workload_identity.service_account_email
 }
 
-output "aws_wif_cred_config_file" {
-  value     = "${path.module}/clientLibraryConfig-aws-provider.json"
-  sensitive = true
-}
-

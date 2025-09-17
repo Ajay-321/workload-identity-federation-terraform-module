@@ -35,10 +35,12 @@ module "workload_identity" {
   # AWS Configuration
   aws_account_id = var.aws_account_id
   aws_role_name  = var.aws_role_name
+  gcs_bucket     = var.gcs_bucket
 
   # Service Account
   service_account_id       = var.service_account_id
   wif_service_account_name = var.wif_service_account_name
+
 
   depends_on = [module.apis]
 }
