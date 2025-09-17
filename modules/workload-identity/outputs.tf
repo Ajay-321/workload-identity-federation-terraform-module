@@ -28,6 +28,9 @@ output "service_account_id" {
   description = "ID of the Workload Identity service account"
   value       = google_service_account.wif_service_account.account_id
 }
-output "aws_wif_cred_config_file" {
-  value = "${path.module}/clientLibraryConfig-aws-provider.json"
+
+output "aws_wif_cred_config" {
+  value     = file("${path.module}/clientLibraryConfig-aws-provider.json")
+  sensitive = true
 }
+

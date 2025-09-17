@@ -29,3 +29,8 @@ output "wif_service_account_email" {
   description = "Email of the Workload Identity service account"
   value       = module.workload_identity.service_account_email
 }
+
+output "aws_wif_cred_config" {
+  value     = file("${path.module}/clientLibraryConfig-aws-provider.json")
+  sensitive = true
+}
