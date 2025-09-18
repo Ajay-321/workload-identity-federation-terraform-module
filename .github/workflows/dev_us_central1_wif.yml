@@ -30,8 +30,8 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: "projects/${{ secrets.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ secrets.POOL_NAME }}/providers/${{ secrets.PROVIDER_NAME }}"
-          service_account: "${{ secrets.SERVICE_ACCOUNT_NAME }}@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com"
+          workload_identity_provider: "${{ secrets.GITHUB_OIDC_PROVIDER_URL }}"
+          service_account: "${{ secrets.GITHUB_OIDC_SERVICE_ACCOUNT_EMAIL }}"
 
       # Setup gcloud CLI
       - name: Setup gcloud
