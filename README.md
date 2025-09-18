@@ -45,9 +45,8 @@ Set up Google Cloud Workload Identity Federation (WIF) for AWS workloads, plus G
 
 ## Example Usage
 
-In GitHub Actions:
-
-```yaml
+### In GitHub Actions
+Pass this env section in terraform plan and apply stages
 env:
   TF_VAR_project_id: ${{ secrets.PROJECT_ID }}
   TF_VAR_project_number: ${{ secrets.PROJECT_NUMBER }}
@@ -57,32 +56,34 @@ env:
   TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
   TF_VAR_aws_role_name: ${{ secrets.AWS_ROLE_NAME }}
 
-Authentication step:
 
-- uses: google-github-actions/auth@v2
-  with:
-    workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER_RESOURCE }}
-    service_account: ${{ secrets.GCP_WIF_SERVICE_ACCOUNT_EMAIL }}
 
-Terraform steps: init, plan, apply.
+## Authentication step:
 
-IAM / Permissions
+    - uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER_RESOURCE }}
+        service_account: ${{ secrets.GCP_WIF_SERVICE_ACCOUNT_EMAIL }}
 
-The GitHub OIDC service account needs:
+## Terraform steps: init, plan, apply.
 
-roles/iam.workloadIdentityPoolAdmin (or equivalent)
+## IAM / Permissions
 
-roles/iam.serviceAccountTokenCreator
+# The GitHub OIDC service account needs:
 
-On the GCS bucket: at least roles/storage.objectAdmin so terraform init and gsutil cp can read/write credential files.
+    * roles/iam.workloadIdentityPoolAdmin (or equivalent)
 
-What to check if it fails
+    * roles/iam.serviceAccountTokenCreator
 
-Make sure the secret names and values are spelled exactly and match variable names.
+    * On the GCS bucket: at least roles/storage.objectAdmin so terraform init and gsutil cp can read/write credential files.
 
-Ensure terraform init runs after authentication in the GitHub Actions workflow.
+# Keep in mind below important points for this setup
 
-Check IAM on GCS bucket: does the service account have storage.objects.list?
+* Make sure the secret names and values are spelled exactly and match variable names.
 
-Ensure the WIF provider secret uses the correct resource string format:
+* Ensure terraform init runs after authentication in the GitHub Actions workflow.
+
+* Check IAM on GCS bucket: does the service account have storage.objects.list?
+
+* Ensure the WIF provider secret uses the correct resource string format:
 projects/<PROJECT_NUMBER>/locations/global/workloadIdentityPools/<POOL_ID>/providers/<PROVIDER_ID>
