@@ -62,6 +62,8 @@ jobs:
             TF_VAR_pool_id: ${{ secrets.AWS_POOL_NAME }}
             TF_VAR_provider_id: ${{ secrets.AWS_PROVIDER_NAME }}
             TF_VAR_service_account_id: ${{ secrets.AWS_SERVICE_ACCOUNT_NAME }}  
+            TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+            TF_VAR_aws_role_name: ${{ secrets.AWS_LAMBDA_IAM_ROLE_NAME }}
 
       # Terraform Apply
       - name: Terraform Apply
@@ -73,6 +75,8 @@ jobs:
             TF_VAR_pool_id: ${{ secrets.AWS_POOL_NAME }}
             TF_VAR_provider_id: ${{ secrets.AWS_PROVIDER_NAME }}
             TF_VAR_service_account_id: ${{ secrets.AWS_SERVICE_ACCOUNT_NAME }}
+            TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+            TF_VAR_aws_role_name: ${{ secrets.AWS_LAMBDA_IAM_ROLE_NAME }}
 
     # Create wif metadata credentials file and uplaod it to GCS bucket as per best security practices
       - name: Create WIF Cred Config
