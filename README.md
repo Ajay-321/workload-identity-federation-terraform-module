@@ -47,14 +47,14 @@ Set up Google Cloud Workload Identity Federation (WIF) for AWS workloads, plus G
 
 ### In GitHub Actions
 Pass this env section in terraform plan and apply stages
-env:
-  TF_VAR_project_id: ${{ secrets.PROJECT_ID }}
-  TF_VAR_project_number: ${{ secrets.PROJECT_NUMBER }}
-  TF_VAR_pool_id: ${{ secrets.WIF_POOL_NAME }}
-  TF_VAR_provider_id: ${{ secrets.WIF_PROVIDER_NAME }}
-  TF_VAR_service_account_id: ${{ secrets.SERVICE_ACCOUNT_NAME }}
-  TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-  TF_VAR_aws_role_name: ${{ secrets.AWS_ROLE_NAME }}
+# env:
+    - TF_VAR_project_id: ${{ secrets.PROJECT_ID }}
+    - TF_VAR_project_number: ${{ secrets.PROJECT_NUMBER }}
+    - TF_VAR_pool_id: ${{ secrets.WIF_POOL_NAME }}
+    - TF_VAR_provider_id: ${{ secrets.WIF_PROVIDER_NAME }}
+    - TF_VAR_service_account_id: ${{ secrets.SERVICE_ACCOUNT_NAME }}
+    - TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+    - TF_VAR_aws_role_name: ${{ secrets.AWS_ROLE_NAME }}
 
 
 
