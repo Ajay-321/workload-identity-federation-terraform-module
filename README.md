@@ -12,3 +12,5 @@ Set up Google Cloud Workload Identity Federation (WIF) for AWS workloads, plus G
 - Uses GitHub Actions with OIDC to deploy Terraform and generate/upload WIF credential config to a GCS bucket.
 
 ## Please follow the below blog link for detailed explanation and configuration details step by step
+https://ajay-gcpwif.hashnode.dev/gcp-workload-identity-federation-creation-for-aws-lambda-with-terraform
+

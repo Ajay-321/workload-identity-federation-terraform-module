@@ -76,12 +76,6 @@ resource "google_pubsub_subscription" "pubsub_topic_sub" {
   }
 }
 
-
-# Get GCS service account for Pub/Sub publishing
-# data "google_storage_project_service_account" "gcs_account" {
-#   project = var.project_id
-# }
-
 # Grant GCS service account permission to publish to Pub/Sub
 resource "google_pubsub_topic_iam_member" "gcs_pubsub_publisher" {
   topic   = google_pubsub_topic.pubsub_topic.id
